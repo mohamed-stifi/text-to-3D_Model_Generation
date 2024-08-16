@@ -10,6 +10,7 @@ from typing import Any
 import base64
 import torch.nn as nn
 import torch.optim as optim
+import trimesh
 
 
 @ensure_annotations
@@ -64,12 +65,14 @@ def load_model(path: Path, model: nn.Module, optimizer: optim.adam) -> ConfigBox
     pass
 
 @ensure_annotations
-def save_mesh(path: Path, mesh):
+def save_glb_mesh(path: Path, mesh):
     pass
 
 @ensure_annotations
-def load_mesh(path: Path):
-    pass
+def load_glb_mesh(glb_file_path: str):
+    mesh = trimesh.load(glb_file_path)
+    logger.info(f"glb mesh file loaded from: {glb_file_path.split()[-1]}")
+    return mesh
 
 
 @ensure_annotations
