@@ -11,6 +11,10 @@ import base64
 import torch.nn as nn
 import torch.optim as optim
 import trimesh
+import pandas as pd
+import requests
+from io import StringIO
+import objaverse
 
 
 @ensure_annotations
@@ -49,19 +53,47 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 @ensure_annotations
-def save_csv(path: Path, data: dict):
-    pass
+def save_csv(path, data: pd.DataFrame):
+    # Save the DataFrame to the specified path as a CSV
+    data.to_csv(path, index=False)
 
 @ensure_annotations
 def load_csv(path: Path) -> ConfigBox:
+    # Read the CSV file using pandas
+    df = pd.read_csv(path)
+    
+    # Convert the DataFrame to a dictionary
+    data_dict = df.to_dict(orient='list')
+    
+    # Convert the dictionary to a ConfigBox for structured access
+    return ConfigBox(data_dict)
+
+@ensure_annotations
+def load_from_url(url: str, num_of_samples: int) -> pd.DataFrame:
+    # Download the content from the URL
+    response = requests.get(url)
+    #print('get response from requestes')
+    # Convert the content to a pandas DataFrame
+    csv_data = StringIO("uids, description\n"+response.text)
+    df = pd.read_csv(csv_data)
+    
+    return df[:num_of_samples]
+
+
+def load_from_objaverse(uids, processes: int) -> pd.DataFrame:
+    objects = objaverse.load_objects(
+        uids=uids,
+        download_processes=processes
+    )
+    objects = pd.DataFrame(objects, columns=['uids', 'path'])
+    return objects
+
+@ensure_annotations
+def save_model(path: Path, model: nn.Module, optimizer: optim.Adam, info: dict):
     pass
 
 @ensure_annotations
-def save_model(path: Path, model: nn.Module, optimizer: optim.adam, info: dict):
-    pass
-
-@ensure_annotations
-def load_model(path: Path, model: nn.Module, optimizer: optim.adam) -> ConfigBox:
+def load_model(path: Path, model: nn.Module, optimizer: optim.Adam) -> ConfigBox:
     pass
 
 @ensure_annotations

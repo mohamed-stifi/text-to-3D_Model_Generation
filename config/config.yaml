@@ -3,7 +3,8 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_url: https://drive.google.com/file/d/12nUZe-2nB7HlHaSiUzeiWqK1qUwGuKmQ/view?usp=sharing
+  source_url: https://huggingface.co/datasets/tiange/Cap3D/resolve/main/Cap3D_automated_Objaverse_full.csv
+  number_of_samples_to_download: 2
   local_data_file: artifacts/data_ingestion/objaverse_with_description.csv
   
   
