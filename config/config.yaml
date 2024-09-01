@@ -1,10 +1,18 @@
 artifacts_root: artifacts
 
-
 data_ingestion:
   root_dir: artifacts/data_ingestion
   source_url: https://huggingface.co/datasets/tiange/Cap3D/resolve/main/Cap3D_automated_Objaverse_full.csv
   number_of_samples_to_download: 2
   local_data_file: artifacts/data_ingestion/objaverse_with_description.csv
+
+data_rendering:
+  local_data_file: artifacts/data_ingestion/objaverse_with_description.csv
+  render_script : rendering/objaverse_rendering.py
+  output_dir : artifacts/dataset
+  num_images : 13
+  resolution : 256
+  engine : CYCLES
+  camera_dist: 1.2
   
   

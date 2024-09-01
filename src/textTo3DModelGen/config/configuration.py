@@ -1,6 +1,7 @@
 from textTo3DModelGen.constants import *
 from textTo3DModelGen.utils.common import read_yaml, create_directories
-from textTo3DModelGen.entity.config_entity import DataIngestionConfig
+from textTo3DModelGen.entity.config_entity import (DataIngestionConfig,
+                                                   DataRenderingConfig)
 
 
 class ConfigurationManager:
@@ -31,3 +32,23 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+
+    def get_data_rendering_config(self) -> DataRenderingConfig:
+        config = self.config.data_rendering
+
+        create_directories([
+            config.output_dir
+        ])
+
+        data_rendering_config = DataRenderingConfig(
+            local_data_file = config.local_data_file,
+            render_script = config.render_script,
+            output_dir = config.output_dir,
+            num_images = config.num_images,
+            resolution = config.resolution,
+            engine = config.engine,
+            camera_dist = config.camera_dist
+        )
+
+        return data_rendering_config
