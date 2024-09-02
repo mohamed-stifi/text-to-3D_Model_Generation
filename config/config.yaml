@@ -21,4 +21,9 @@ text_embedding:
   model_name: openai/clip-vit-base-patch32
   cache_dir: models
   
-  
+data_split:
+  local_data_file: artifacts/data_ingestion/objaverse_with_description.csv
+  output_dir: artifacts/data_split
+  train_ratio: 0.7
+  test_ratio: 0.15
+  val_ratio: 0.15 

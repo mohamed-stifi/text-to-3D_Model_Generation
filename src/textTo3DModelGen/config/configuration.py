@@ -2,7 +2,8 @@ from textTo3DModelGen.constants import *
 from textTo3DModelGen.utils.common import read_yaml, create_directories
 from textTo3DModelGen.entity.config_entity import (DataIngestionConfig,
                                                    DataRenderingConfig,
-                                                   TextEmbeddingConfig)
+                                                   TextEmbeddingConfig,
+                                                   DataSplitConfig)
 
 
 class ConfigurationManager:
@@ -66,3 +67,23 @@ class ConfigurationManager:
         )
 
         return text_embedding_config
+    
+
+    def get_data_split_config(self) -> DataSplitConfig:
+        config = self.config.data_split
+
+        create_directories([
+            config.output_dir
+        ])
+
+        data_split_config = DataSplitConfig(
+            local_data_file= config.local_data_file,
+            output_dir= config.output_dir,
+            train_ratio= config.train_ratio,
+            test_ratio= config.test_ratio,
+            val_ratio= config.val_ratio
+        )
+
+        return data_split_config
+    
+    

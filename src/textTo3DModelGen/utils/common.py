@@ -88,6 +88,14 @@ def load_from_objaverse(uids, processes: int) -> pd.DataFrame:
     objects = pd.DataFrame(objects, columns=['uids', 'path'])
     return objects
 
+# Function to save lists to text files
+def save_list_to_textfile(filename, data, data_name):
+    with open(filename, 'w') as f:
+        for item in data:
+            f.write(f"{item}\n")
+    
+    logger.info(f"{data_name} saved to {filename}.")
+
 @ensure_annotations
 def save_model(path: Path, model: nn.Module, optimizer: optim.Adam, info: dict):
     pass
