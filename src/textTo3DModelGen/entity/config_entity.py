@@ -18,3 +18,11 @@ class DataRenderingConfig:
     resolution : int
     engine : str
     camera_dist: float
+
+
+@dataclass(frozen=True)
+class TextEmbeddingConfig:
+    local_data_file: Path
+    embedding_dir: Path
+    model_name: str
+    cache_dir: Path

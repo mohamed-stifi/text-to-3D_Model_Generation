@@ -14,5 +14,11 @@ data_rendering:
   resolution : 256
   engine : CYCLES
   camera_dist: 1.2
+
+text_embedding:
+  local_data_file: artifacts/data_ingestion/objaverse_with_description.csv
+  embedding_dir: artifacts/dataset/embedding
+  model_name: openai/clip-vit-base-patch32
+  cache_dir: models
   
   

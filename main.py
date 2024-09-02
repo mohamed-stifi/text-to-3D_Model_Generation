@@ -1,11 +1,12 @@
 from textTo3DModelGen.pipeline.stage_01_data_ingestion import DataIngestionPipeline
 from textTo3DModelGen.pipeline.stage_02_data_rendering import DataRenderingPipeline
+from textTo3DModelGen.pipeline.stage_03_text_embedding import TextEmbeddingPipeline
 from textTo3DModelGen import logger
 import argparse
 
 
 parser = argparse.ArgumentParser(description="Run different stages of the process.")
-parser.add_argument("--stage", required=True, help="Specify the stage to run: \n1: run data ingestion pipeline.\n2: run data rendering pipeline.\n3: run data loader pipeline.\n4: run all pipeline.")
+parser.add_argument("--stage", required=True, help="Specify the stage to run: \n1: run data ingestion pipeline.\n2: run data rendering pipeline.\n3: run text embedding pipeline.\n4: run all pipeline.")
 args = parser.parse_args()
 
 if __name__ == "__main__":
@@ -26,6 +27,18 @@ if __name__ == "__main__":
         try:
             logger.info(f">>>>>>>>> stage {STAGE_NAME} started <<<<<<<<")
             obj = DataRenderingPipeline()
+            obj.main()
+            logger.info(f">>>>>>>>> stage {STAGE_NAME} completed <<<<<<<<")
+        except Exception as e:
+            logger.info(f">>>>>>>>> stage {STAGE_NAME} stoped -ERROR <<<<<<<<")
+            logger.exception(e)
+            raise e
+        
+    elif args.stage == "3":
+        STAGE_NAME = "Text Embedding stage"
+        try:
+            logger.info(f">>>>>>>>> stage {STAGE_NAME} started <<<<<<<<")
+            obj = TextEmbeddingPipeline()
             obj.main()
             logger.info(f">>>>>>>>> stage {STAGE_NAME} completed <<<<<<<<")
         except Exception as e:

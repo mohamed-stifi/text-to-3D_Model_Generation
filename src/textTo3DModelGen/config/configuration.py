@@ -1,7 +1,8 @@
 from textTo3DModelGen.constants import *
 from textTo3DModelGen.utils.common import read_yaml, create_directories
 from textTo3DModelGen.entity.config_entity import (DataIngestionConfig,
-                                                   DataRenderingConfig)
+                                                   DataRenderingConfig,
+                                                   TextEmbeddingConfig)
 
 
 class ConfigurationManager:
@@ -52,3 +53,16 @@ class ConfigurationManager:
         )
 
         return data_rendering_config
+
+
+    def get_text_embedding_config(self) -> TextEmbeddingConfig:
+        config = self.config.text_embedding
+
+        text_embedding_config = TextEmbeddingConfig(
+            local_data_file = config.local_data_file,
+            embedding_dir = config.embedding_dir,
+            model_name = config.model_name,
+            cache_dir = config.cache_dir
+        )
+
+        return text_embedding_config
