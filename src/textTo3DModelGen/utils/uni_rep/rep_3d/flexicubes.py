@@ -6,7 +6,7 @@
 # distribution of this software and related documentation without an express
 # license agreement from NVIDIA CORPORATION & AFFILIATES is strictly prohibited.
 import torch
-from uni_rep.rep_3d.tables import *
+from textTo3DModelGen.utils.uni_rep.rep_3d.tables import *
 
 __all__ = [
     'FlexiCubes'

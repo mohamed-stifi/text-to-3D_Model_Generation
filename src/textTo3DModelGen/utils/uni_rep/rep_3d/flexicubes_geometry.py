@@ -9,9 +9,9 @@
 import torch
 import numpy as np
 import os
-from uni_rep.rep_3d import Geometry
-from uni_rep.rep_3d.flexicubes import FlexiCubes # replace later
-from uni_rep.rep_3d.dmtet import sdf_reg_loss_batch
+from textTo3DModelGen.utils.uni_rep.rep_3d import Geometry
+from textTo3DModelGen.utils.uni_rep.rep_3d.flexicubes import FlexiCubes # replace later
+from textTo3DModelGen.utils.uni_rep.rep_3d.dmtet import sdf_reg_loss_batch
 import torch.nn.functional as F
 
 def get_center_boundary_index(grid_res, device):

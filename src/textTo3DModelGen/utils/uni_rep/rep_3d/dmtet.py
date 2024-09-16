@@ -9,8 +9,8 @@
 import torch
 import numpy as np
 import os
-from uni_rep.rep_3d import Geometry
-from uni_rep.rep_3d.dmtet_utils import get_center_boundary_index
+from textTo3DModelGen.utils.uni_rep.rep_3d import Geometry
+from textTo3DModelGen.utils.uni_rep.rep_3d.dmtet_utils import get_center_boundary_index
 import torch.nn.functional as F
 
 
