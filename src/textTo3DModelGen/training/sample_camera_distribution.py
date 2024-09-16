@@ -8,7 +8,7 @@
 
 import math
 import numpy as np
-from training.math_utils_torch import *
+from textTo3DModelGen.training.math_utils_torch import *
 
 
 def create_camera_from_angle(phi, theta, sample_r, device='cuda'):
