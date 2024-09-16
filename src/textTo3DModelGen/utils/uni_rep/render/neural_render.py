@@ -9,7 +9,7 @@
 import torch
 import torch.nn.functional as F
 import nvdiffrast.torch as dr
-from uni_rep.render import Renderer
+from textTo3DModelGen.utils.uni_rep.render import Renderer
 
 _FG_LUT = None
 
