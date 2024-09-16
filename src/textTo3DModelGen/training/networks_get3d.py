@@ -20,7 +20,10 @@ from textTo3DModelGen.training.discriminator_architecture import Discriminator
 from textTo3DModelGen.training.geometry_predictor import Conv3DImplicitSynthesisNetwork, TriPlaneTex, \
     MappingNetwork, ToRGBLayer, TriPlaneTexGeo
 
-
+# ----------------------------------------------------------------------------
+####################
+#  from Ws (W1, W2) to roturn the rendering image and mask
+####################
 @persistence.persistent_class
 class DMTETSynthesisNetwork(torch.nn.Module):
     def __init__(
@@ -413,7 +416,7 @@ class DMTETSynthesisNetwork(torch.nn.Module):
             mesh_v, mesh_f, sdf, deformation, v_deformed, sdf_reg_loss = self.get_geometry_prediction(ws_geo)
 
         # Step 2: use x-atlas to get uv mapping for the mesh
-        from training.extract_texture_map import xatlas_uvmap
+        from textTo3DModelGen.training.extract_texture_map import xatlas_uvmap
         all_uvs = []
         all_mesh_tex_idx = []
         all_gb_pose = []
@@ -573,7 +576,10 @@ class DMTETSynthesisNetwork(torch.nn.Module):
             return img, sdf, gen_camera, deformation, v_deformed, mesh_v, mesh_f, mask_pyramid, sdf_reg_loss, render_return_value
         return img, gen_camera, mask_pyramid, sdf_reg_loss, render_return_value
 
-
+# ----------------------------------------------------------------------------
+####################
+#  the generator of GET3D
+####################
 @persistence.persistent_class
 class GeneratorDMTETMesh(torch.nn.Module):
     def __init__(
@@ -619,6 +625,10 @@ class GeneratorDMTETMesh(torch.nn.Module):
         self.mapping.update_w_avg(self.device, c)
         self.mapping_geo.update_w_avg(self.device, c)
 
+    # ----------------------------------------------------------------------------
+    ####################
+    #  parte of inference in the architectuer of GET3D
+    ####################
     def generate_3d_mesh(
             self, geo_z, tex_z, c, truncation_psi=1, truncation_cutoff=None, update_emas=False,
             with_texture=True, use_style_mixing=False, use_mapping=True, **synthesis_kwargs):
