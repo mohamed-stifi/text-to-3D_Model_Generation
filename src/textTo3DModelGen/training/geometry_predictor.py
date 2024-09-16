@@ -11,16 +11,16 @@ import math
 
 import numpy as np
 import torch
-from torch_utils import misc
-from torch_utils import persistence
-from torch_utils.ops import conv2d_resample
-from torch_utils.ops import upfirdn2d
-from torch_utils.ops import bias_act
-from torch_utils.ops import fma
+from textTo3DModelGen.utils.torch_utils import misc
+from textTo3DModelGen.utils.torch_utils import persistence
+from textTo3DModelGen.utils.torch_utils.ops import conv2d_resample
+from textTo3DModelGen.utils.torch_utils.ops import upfirdn2d
+from textTo3DModelGen.utils.torch_utils.ops import bias_act
+from textTo3DModelGen.utils.torch_utils.ops import fma
 from torch import nn
 import torch.nn.functional as F
-from training.utils.ops import grid_sample_3d
-from torch_utils.ops import grid_sample_gradfix
+from textTo3DModelGen.training.utils.ops import grid_sample_3d
+from textTo3DModelGen.utils.torch_utils.ops import grid_sample_gradfix
 
 
 # ----------------------------------------------------------------------------
@@ -181,6 +181,9 @@ def modulated_conv3d(
 
 # ----------------------------------------------------------------------------
 
+####################
+# Linear Layer
+####################
 @persistence.persistent_class
 class FullyConnectedLayer(torch.nn.Module):
     def __init__(
@@ -224,6 +227,9 @@ class FullyConnectedLayer(torch.nn.Module):
 
 # ----------------------------------------------------------------------------
 
+####################
+# 2D Convolution Layer
+####################
 @persistence.persistent_class
 class Conv2dLayer(torch.nn.Module):
     def __init__(
@@ -287,6 +293,9 @@ class Conv2dLayer(torch.nn.Module):
                 f'up={self.up}, down={self.down}'])
 
 
+####################
+# 3D Convolution Layer
+####################
 @persistence.persistent_class
 class Conv3dLayer(torch.nn.Module):
     def __init__(
@@ -352,6 +361,9 @@ class Conv3dLayer(torch.nn.Module):
 
 
 # ----------------------------------------------------------------------------
+####################
+# Mapping Network in the paper
+####################
 @persistence.persistent_class
 class MappingNetwork(torch.nn.Module):
     def __init__(
@@ -450,6 +462,9 @@ class MappingNetwork(torch.nn.Module):
 
 
 # ----------------------------------------------------------------------------
+####################
+# Affine -> Modulation -> Demodulation for ModBlock2D in the paper 
+####################
 @persistence.persistent_class
 class SynthesisLayer(torch.nn.Module):
     def __init__(
@@ -522,6 +537,10 @@ class SynthesisLayer(torch.nn.Module):
                 f'resolution={self.resolution:d}, up={self.up}, activation={self.activation:s}'])
 
 
+# ----------------------------------------------------------------------------
+####################
+# Affine -> Modulation -> Demodulation for ModBlock3D in the paper 
+####################
 @persistence.persistent_class
 class Conv3DSynthesisLayer(torch.nn.Module):
     def __init__(
@@ -592,6 +611,10 @@ class Conv3DSynthesisLayer(torch.nn.Module):
                 f'resolution={self.resolution:d}, up={self.up}, activation={self.activation:s}'])
 
 
+# ----------------------------------------------------------------------------
+####################
+# Affine -> Modulation -> Demodulation for ModFC in the paper 
+####################
 @persistence.persistent_class
 class ImplicitSynthesisLayer(torch.nn.Module):
     def __init__(
@@ -640,7 +663,9 @@ class ImplicitSynthesisLayer(torch.nn.Module):
 
 
 # ----------------------------------------------------------------------------
-
+####################
+# Affine -> Modulation for tTPF in the paper 
+####################
 @persistence.persistent_class
 class ToRGBLayer(torch.nn.Module):
     def __init__(
@@ -668,6 +693,10 @@ class ToRGBLayer(torch.nn.Module):
         return f'in_channels={self.in_channels:d}, out_channels={self.out_channels:d}, w_dim={self.w_dim:d}'
 
 
+# ----------------------------------------------------------------------------
+####################
+# The Block of multi ModFC (3 in the paper).
+####################
 @persistence.persistent_class
 class ImplicitSynthesisBlock(torch.nn.Module):
     def __init__(
@@ -832,6 +861,10 @@ class SynthesisBlockTexGeo(torch.nn.Module):
         return f'resolution={self.resolution:d}, architecture={self.architecture:s}'
 
 
+# ----------------------------------------------------------------------------
+####################
+# ModBlock2D + tTPF in the paper
+####################
 @persistence.persistent_class
 class SynthesisBlock(torch.nn.Module):
     def __init__(
@@ -950,6 +983,10 @@ class SynthesisBlock(torch.nn.Module):
 
 # Let's start the training of current neural network
 
+# ----------------------------------------------------------------------------
+####################
+# ModBlock3D in the paper
+####################
 @persistence.persistent_class
 class Conv3DSynthesisBlock(torch.nn.Module):
     def __init__(
@@ -1050,6 +1087,10 @@ class Conv3DSynthesisBlock(torch.nn.Module):
 
 
 # ----------------------------------------------------------------------------
+####################
+# the left part of texture generator (before reshape).
+# seris of (ModBlock2D + tTPF)
+####################
 @persistence.persistent_class
 class SynthesisNetwork(torch.nn.Module):
     def __init__(
@@ -1180,7 +1221,10 @@ class SynthesisNetworkTexGeo(torch.nn.Module):
                 f'img_resolution={self.img_resolution:d}, img_channels={self.img_channels:d},',
                 f'num_fp16_res={self.num_fp16_res:d}'])
 
-
+# ----------------------------------------------------------------------------
+####################
+# The Block of multi ModFC (3 in the paper).
+####################
 ####################
 # Condiontial fully connected networks
 ####################
@@ -1230,7 +1274,10 @@ class ImplicitSynthesisNetwork(torch.nn.Module):
             [
                 f'w_dim={self.w_dim:d}'])
 
-
+# ----------------------------------------------------------------------------
+####################
+# Geometry Generator Block
+####################
 ####################
 # 3D volume generator for geometry
 ####################
@@ -1345,7 +1392,10 @@ class Conv3DImplicitSynthesisNetwork(torch.nn.Module):
         out = self.layers[-1](ws_for_mlp_detail[:, self.n_layer], out)
         return out
 
-
+# ----------------------------------------------------------------------------
+####################
+# Texture Generator
+####################
 ####################
 # Triplane generator for texture
 ####################
