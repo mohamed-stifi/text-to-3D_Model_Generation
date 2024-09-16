@@ -12,11 +12,11 @@ import os
 
 import numpy as np
 import torch
-import dnnlib
-from torch_utils.ops import conv2d_gradfix
-from torch_utils.ops import grid_sample_gradfix
-from metrics import metric_main
-from training.inference_utils import save_visualization, save_visualization_for_interpolation, \
+import textTo3DModelGen.dnnlib as dnnlib
+from textTo3DModelGen.utils.torch_utils.ops import conv2d_gradfix
+from textTo3DModelGen.utils.torch_utils.ops import grid_sample_gradfix
+from textTo3DModelGen.metrics import metric_main
+from textTo3DModelGen.training.inference_utils import save_visualization, save_visualization_for_interpolation, \
     save_textured_mesh_for_inference, save_geo_for_inference
 
 
@@ -44,9 +44,9 @@ def inference(
         inference_generate_geo=False,
         **dummy_kawargs
 ):
-    from torch_utils.ops import upfirdn2d
-    from torch_utils.ops import bias_act
-    from torch_utils.ops import filtered_lrelu
+    from textTo3DModelGen.utils.torch_utils.ops import upfirdn2d
+    from textTo3DModelGen.utils.torch_utils.ops import bias_act
+    from textTo3DModelGen.utils.torch_utils.ops import filtered_lrelu
     upfirdn2d._init()
     bias_act._init()
     filtered_lrelu._init()

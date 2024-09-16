@@ -12,7 +12,7 @@ import torch
 import numpy as np
 import os
 import PIL.Image
-from training.utils.utils_3d import save_obj, savemeshtes2
+from textTo3DModelGen.training.utils.utils_3d import save_obj, savemeshtes2
 import imageio
 import cv2
 from tqdm import tqdm

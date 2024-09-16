@@ -8,8 +8,8 @@
 
 import numpy as np
 import torch
-from torch_utils import training_stats
-from torch_utils.ops import conv2d_gradfix
+from textTo3DModelGen.utils.torch_utils import training_stats
+from textTo3DModelGen.utils.torch_utils.ops import conv2d_gradfix
 
 
 # ----------------------------------------------------------------------------
@@ -21,6 +21,7 @@ class Loss:
 
 # ----------------------------------------------------------------------------
 # Regulrarization loss for dmtet
+# for more details show section 3.2 in GET3D paper
 def sdf_reg_loss_batch(sdf, all_edges):
     sdf_f1x6x2 = sdf[:, all_edges.reshape(-1)].reshape(sdf.shape[0], -1, 2)
     mask = torch.sign(sdf_f1x6x2[..., 0]) != torch.sign(sdf_f1x6x2[..., 1])
@@ -115,7 +116,7 @@ class StyleGAN2Loss(Loss):
                         self.G.synthesis.data_camera_mode == 'all_shapenet':
                     camera_condition = torch.cat((gen_camera[-2], gen_camera[-1]), dim=-1)
                 else:
-                    assert NotImplementedError
+                    camera_condition = torch.cat((gen_camera[-2], gen_camera[-1]), dim=-1)
                 # Send to discriminator
                 gen_logits = self.run_D(gen_img, camera_condition, mask_pyramid=mask_pyramid)
                 gen_logits, gen_logits_mask = gen_logits
