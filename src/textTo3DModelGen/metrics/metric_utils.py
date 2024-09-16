@@ -16,7 +16,7 @@ import copy
 import uuid
 import numpy as np
 import torch
-import dnnlib
+import textTo3DModelGen.dnnlib as dnnlib
 from tqdm import tqdm
 import PIL.Image
 
