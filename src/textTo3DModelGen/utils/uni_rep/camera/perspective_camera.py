@@ -7,7 +7,7 @@
 # license agreement from NVIDIA CORPORATION & AFFILIATES is strictly prohibited.
 
 import torch
-from uni_rep.camera import Camera
+from textTo3DModelGen.utils.uni_rep.camera import Camera
 import numpy as np
 
 
