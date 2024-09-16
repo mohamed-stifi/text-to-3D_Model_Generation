@@ -9,15 +9,15 @@ import math
 import numpy as np
 import torch
 import torch.nn.functional as F
-from torch_utils import persistence
+from textTo3DModelGen.utils.torch_utils import persistence
 import nvdiffrast.torch as dr
-from training.sample_camera_distribution import sample_camera, create_camera_from_angle
-from uni_rep.rep_3d.dmtet import DMTetGeometry
-from uni_rep.rep_3d.flexicubes_geometry import FlexiCubesGeometry
-from uni_rep.camera.perspective_camera import PerspectiveCamera
-from uni_rep.render.neural_render import NeuralRender
-from training.discriminator_architecture import Discriminator
-from training.geometry_predictor import Conv3DImplicitSynthesisNetwork, TriPlaneTex, \
+from textTo3DModelGen.training.sample_camera_distribution import sample_camera, create_camera_from_angle
+from textTo3DModelGen.utils.uni_rep.rep_3d.dmtet import DMTetGeometry
+from textTo3DModelGen.utils.uni_rep.rep_3d.flexicubes_geometry import FlexiCubesGeometry
+from textTo3DModelGen.utils.uni_rep.camera.perspective_camera import PerspectiveCamera
+from textTo3DModelGen.utils.uni_rep.render.neural_render import NeuralRender
+from textTo3DModelGen.training.discriminator_architecture import Discriminator
+from textTo3DModelGen.training.geometry_predictor import Conv3DImplicitSynthesisNetwork, TriPlaneTex, \
     MappingNetwork, ToRGBLayer, TriPlaneTexGeo
 
 
