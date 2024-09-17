@@ -170,7 +170,8 @@ class StyleGAN2Loss(Loss):
                         self.G.synthesis.data_camera_mode == 'all_shapenet':
                     camera_condition = torch.cat((gen_camera[-2], gen_camera[-1]), dim=-1)
                 else:
-                    camera_condition = None
+                    camera_condition = torch.cat((gen_camera[-2], gen_camera[-1]), dim=-1)
+
 
                 # Send it to discriminator
                 gen_logits = self.run_D(

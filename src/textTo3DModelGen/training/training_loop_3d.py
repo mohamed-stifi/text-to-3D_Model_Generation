@@ -226,7 +226,7 @@ def training_loop(
             save_image_grid(images, os.path.join(run_dir, 'reals.png'), drange=[0, 255], grid_size=grid_size)
         torch.manual_seed(1234)
         grid_z = torch.randn([images.shape[0], G.z_dim], device=device).split(1)  # This one is the latent code for shape generation
-        grid_c = torch.ones(images.shape[0], device=device).split(1)  # This one is not used, just for the compatiable with the code structure.
+        grid_c = torch.tensor(labels) # torch.ones(images.shape[0], device=device).split(1)  # This one is not used, just for the compatiable with the code structure.
 
     if rank == 0:
         print('Initializing logs...')
@@ -398,10 +398,10 @@ def training_loop(
                 print('Evaluating metrics...')
             with torch.no_grad():
                 for metric in metrics:
-                    if training_set_kwargs['split'] != 'all':
+                    if os.path.basename(training_set_kwargs['data_split_file']).split(".")[0] != 'train':
                         if rank == 0:
                             print('====> use validation set')
-                        training_set_kwargs['split'] = 'val'
+                        training_set_kwargs['data_split_file'] = os.path.split(training_set_kwargs['data_split_file'])[0]+'/val.txt'
                     training_set_kwargs = clean_training_set_kwargs_for_metrics(training_set_kwargs)
                     with torch.no_grad():
                         result_dict = metric_main.calc_metric(
