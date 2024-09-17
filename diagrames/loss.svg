@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="398px" preserveAspectRatio="none" style="width:389px;height:398px;" version="1.1" viewBox="0 0 389 398" width="389px" zoomAndPan="magnify"><defs><filter height="300%" id="f1oqlj29quuiix" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[954de87667093799d95f7bfd06b1505b]
+class Loss--><rect fill="#FEFECE" filter="url(#f1oqlj29quuiix)" height="60.8047" id="Loss" style="stroke: #A80036; stroke-width: 1.5;" width="145" x="6" y="228.5"/><ellipse cx="60.25" cy="244.5" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M63.2188,250.1406 Q62.6406,250.4375 62,250.5781 Q61.3594,250.7344 60.6563,250.7344 Q58.1563,250.7344 56.8281,249.0938 Q55.5156,247.4375 55.5156,244.3125 Q55.5156,241.1875 56.8281,239.5313 Q58.1563,237.875 60.6563,237.875 Q61.3594,237.875 62,238.0313 Q62.6563,238.1875 63.2188,238.4844 L63.2188,241.2031 Q62.5938,240.625 62,240.3594 Q61.4063,240.0781 60.7813,240.0781 Q59.4375,240.0781 58.75,241.1563 Q58.0625,242.2188 58.0625,244.3125 Q58.0625,246.4063 58.75,247.4844 Q59.4375,248.5469 60.7813,248.5469 Q61.4063,248.5469 62,248.2813 Q62.5938,248 63.2188,247.4219 L63.2188,250.1406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="28" x="80.75" y="248.6543">Loss</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="7" x2="150" y1="260.5" y2="260.5"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="7" x2="150" y1="268.5" y2="268.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="133" x="12" y="282.7104">accumulate_gradients()</text><!--MD5=[4114c6c68e4b6a7d1f03da4135898195]
+class StyleGAN2Loss--><rect fill="#FEFECE" filter="url(#f1oqlj29quuiix)" height="214.4609" id="StyleGAN2Loss" style="stroke: #A80036; stroke-width: 1.5;" width="192" x="186.5" y="152"/><ellipse cx="232.25" cy="168" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M235.2188,173.6406 Q234.6406,173.9375 234,174.0781 Q233.3594,174.2344 232.6563,174.2344 Q230.1563,174.2344 228.8281,172.5938 Q227.5156,170.9375 227.5156,167.8125 Q227.5156,164.6875 228.8281,163.0313 Q230.1563,161.375 232.6563,161.375 Q233.3594,161.375 234,161.5313 Q234.6563,161.6875 235.2188,161.9844 L235.2188,164.7031 Q234.5938,164.125 234,163.8594 Q233.4063,163.5781 232.7813,163.5781 Q231.4375,163.5781 230.75,164.6563 Q230.0625,165.7188 230.0625,167.8125 Q230.0625,169.9063 230.75,170.9844 Q231.4375,172.0469 232.7813,172.0469 Q233.4063,172.0469 234,171.7813 Q234.5938,171.5 235.2188,170.9219 L235.2188,173.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="92" x="252.75" y="172.1543">StyleGAN2Loss</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="187.5" x2="377.5" y1="184" y2="184"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="8" x="192.5" y="198.2104">D</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="9" x="192.5" y="211.0151">G</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="192.5" y="223.8198">device</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="80" x="192.5" y="236.6245">gamma_mask</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="179" x="192.5" y="249.4292">lambda_flexicubes_surface_reg</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="180" x="192.5" y="262.2339">lambda_flexicubes_weights_reg</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="53" x="192.5" y="275.0386">pl_weight</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="61" x="192.5" y="287.8433">r1_gamma</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="102" x="192.5" y="300.6479">style_mixing_prob</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="187.5" x2="377.5" y1="307.2422" y2="307.2422"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="49" x="192.5" y="321.4526">__init__()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="133" x="192.5" y="334.2573">accumulate_gradients()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="41" x="192.5" y="347.062">run_D()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="42" x="192.5" y="359.8667">run_G()</text><!--MD5=[bf207fdb9b0538e9835c3ac4f4c17379]
+class loss_py--><rect fill="#8FBC8F" filter="url(#f1oqlj29quuiix)" height="66.7422" id="loss_py" style="stroke: #A80036; stroke-width: 1.5;" width="130" x="114.5" y="8"/><ellipse cx="148.4" cy="26.9688" fill="#DA70D6" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M144.1188,20.5781 L147.0406,20.5781 L148.5094,26.0156 L149.9781,20.5781 L152.9156,20.5781 L152.9156,32.9688 L150.8063,32.9688 L150.8063,23.0469 L149.4938,28.4688 L147.5563,28.4688 L146.2281,23.0469 L146.2281,32.9688 L144.1188,32.9688 L144.1188,20.5781 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="60" x="164.6" y="24.1387">«module»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="172.1" y="38.1074">loss_py</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="115.5" x2="243.5" y1="45.9375" y2="45.9375"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="115.5" x2="243.5" y1="53.9375" y2="53.9375"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="118" x="120.5" y="68.1479">sdf_reg_loss_batch()</text><!--MD5=[6a92b57a06edf4b479d60ce01274600a]
+reverse link Loss to StyleGAN2Loss--><path d="M171.23,259 C176.3,259 181.38,259 186.45,259 " fill="none" id="Loss&lt;-StyleGAN2Loss" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="171.02,266,151.02,259,171.02,252,171.02,266" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[02ce9f56d70011d4dabedda0abb81222]
+link loss_py to Loss--><path d="M161.78,75.05 C156.71,84.63 151.27,95.18 146.5,105 C125.93,147.36 104.16,197.38 90.95,228.4 " fill="none" id="loss_py-Loss" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="147.5" y="118.0669">contains</text><polygon fill="#000000" points="170,127.1328,173,133.1328,176,127.1328,170,127.1328" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[6d61a3ed52fa74d9c483f560cf93c5db]
+link loss_py to StyleGAN2Loss--><path d="M202.01,75.25 C208.05,84.66 214.32,95.06 219.5,105 C227.26,119.91 234.76,135.99 241.72,151.93 " fill="none" id="loss_py-StyleGAN2Loss" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="228.5" y="118.0669">contains</text><polygon fill="#000000" points="251,127.1328,254,133.1328,257,127.1328,251,127.1328" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="191" x="103" y="385.2822">Generated by GitUML www.gituml.com</text><!--MD5=[31959df840b3f0f71087feb0e9032b11]
+@startuml
+class Loss {
+    accumulate_gradients()
+}
+
+
+class StyleGAN2Loss {
+    D
+    G
+    device
+    gamma_mask
+    lambda_flexicubes_surface_reg
+    lambda_flexicubes_weights_reg
+    pl_weight
+    r1_gamma
+    style_mixing_prob
+    __init__()
+    accumulate_gradients()
+    run_D()
+    run_G()
+}
+
+Loss <|- StyleGAN2Loss
+class loss_py <<module>> << (M,orchid) >> #DarkSeaGreen {
+    - - -
+    sdf_reg_loss_batch()
+}
+
+loss_py .. Loss : contains >
+loss_py .. StyleGAN2Loss : contains >
+center footer Generated by GitUML www.gituml.com
+@enduml
+
+PlantUML version 1.2020.08(Sun Apr 26 14:08:22 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_402-heroku-b06
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

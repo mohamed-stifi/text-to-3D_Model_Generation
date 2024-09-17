@@ -13,15 +13,15 @@ import copy
 import json
 import numpy as np
 import torch
-import dnnlib
-from torch_utils import misc
-from torch_utils import training_stats
-from torch_utils.ops import conv2d_gradfix
-from torch_utils.ops import grid_sample_gradfix
-from metrics import metric_main
+import textTo3DModelGen.dnnlib as dnnlib
+from textTo3DModelGen.utils.torch_utils import misc
+from textTo3DModelGen.utils.torch_utils import training_stats
+from textTo3DModelGen.utils.torch_utils.ops import conv2d_gradfix
+from textTo3DModelGen.utils.torch_utils.ops import grid_sample_gradfix
+from textTo3DModelGen.metrics import metric_main
 import nvdiffrast.torch as dr
 import time
-from training.inference_utils import save_image_grid, save_visualization
+from textTo3DModelGen.training.inference_utils import save_image_grid, save_visualization
 
 
 # ----------------------------------------------------------------------------
@@ -107,9 +107,9 @@ def training_loop(
         detect_anomaly=False,
         resume_pretrain=None,
 ):
-    from torch_utils.ops import upfirdn2d
-    from torch_utils.ops import bias_act
-    from torch_utils.ops import filtered_lrelu
+    from textTo3DModelGen.utils.torch_utils.ops import upfirdn2d
+    from textTo3DModelGen.utils.torch_utils.ops import bias_act
+    from textTo3DModelGen.utils.torch_utils.ops import filtered_lrelu
     upfirdn2d._init()
     bias_act._init()
     filtered_lrelu._init()
