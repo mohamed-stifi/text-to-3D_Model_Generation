@@ -27,3 +27,10 @@ data_split:
   train_ratio: 0.7
   test_ratio: 0.15
   val_ratio: 0.15 
+
+
+training_model:
+  # Required from StyleGAN2.
+  outdir: "results/"  # Where to save the results
+  cfg: 'stylegan2'
+  gpus: 

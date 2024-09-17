@@ -288,4 +288,38 @@ class ImageFolderDataset(Dataset):
         return resize_img
 
     def _load_raw_labels(self):
-        return None
+        labels = []
+        for fname in self._image_fnames:
+            img_idx = int(os.path.split(fname)[1].split('.')[0])
+            camera_info = np.zeros(2)
+            obj_idx = os.path.split(os.path.split(fname)[0])[1]
+            rotation_camera = np.load(os.path.join(self.camera_root, obj_idx, 'rotation.npy'))
+            elevation_camera = np.load(os.path.join(self.camera_root, obj_idx, 'elevation.npy'))
+            camera_info[0] = rotation_camera[img_idx] / 180 * np.pi
+            camera_info[1] = (90 - elevation_camera[img_idx]) / 180.0 * np.pi
+
+            text_condition = torch.load(os.path.join(self.embedding_root, obj_idx, 'condition.pt')).cpu().numpy()
+
+            condinfo = np.concatenate((text_condition, camera_info), axis=0)
+
+            labels.append(condinfo)
+
+        return np.array(labels)
+    
+    def get_label(self, idx):
+        fname = self._image_fnames[self._raw_idx[idx]]
+        img_idx = int(os.path.split(fname)[1].split('.')[0])
+        camera_info = np.zeros(2)
+        obj_idx = os.path.split(os.path.split(fname)[0])[1]
+        rotation_camera = np.load(os.path.join(self.camera_root, obj_idx, 'rotation.npy'))
+        elevation_camera = np.load(os.path.join(self.camera_root, obj_idx, 'elevation.npy'))
+        camera_info[0] = rotation_camera[img_idx] / 180 * np.pi
+        camera_info[1] = (90 - elevation_camera[img_idx]) / 180.0 * np.pi
+
+        text_condition = torch.load(os.path.join(self.embedding_root, obj_idx, 'condition.pt')).cpu().numpy()
+
+        condinfo = np.concatenate((text_condition, camera_info), axis=0)
+
+        return condinfo
+
+
