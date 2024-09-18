@@ -1,1 +1,78 @@
-key: val
+model_hyperprams:
+  # Required from StyleGAN2.
+  StyleGAN2:
+    outdir: "results/"  # Where to save the results
+    cfg: 'stylegan2'    # Base configuration
+    gpus: 1
+    batch: 4            # Total batch size
+    gamma: 40           # R1 regularization weight
+
+  ### Configs for inference
+  inference:
+    resume_pretrain: ''     # Resume from given network pickle
+    inference_vis: 0        # whther we run infernce
+    inference_to_generate_textured_mesh: 0        # inference to generate textured meshes
+    inference_save_interpolation: 0               # inference to generate interpolation results
+    inference_compute_fid: 0                      # inference to generate interpolation results
+    inference_generate_geo: 0                     # inference to generate geometry points
+
+  ### Configs for dataset
+  dataset:
+    data: ./artifacts/dataset                     # Path to the Training data Images
+    # camera_path:                                # Path to the camera root
+    img_res: 128                                  # The resolution of image
+    data_split_file: ./artifacts/data_split/train.txt # Path to the Training split text file
+    use_labels: 1
+  
+  ### Configs for 3D generator
+  generator:
+    iso_surface: dmtet                  # Differentiable iso-surfacing method
+    use_style_mixing: 1                 # whether use style mixing for generation during inference
+    one_3d_generator: 0                 # whether we detach the gradient for empty object
+    dmtet_scale: 1.0                    # Scale for the dimention of dmtet
+    n_implicit_layer: 1                 # Number of Implicit FC layer for XYZPlaneTex model
+    feat_channel: 16                    # Feature channel for TORGB layer
+    mlp_latent_channel: 32              # mlp_latent_channel for XYZPlaneTex network
+    deformation_multiplier: 1.0         # Multiplier for the predicted deformation
+    tri_plane_resolution: 256           # The resolution for tri plane
+    n_views: 1                          # number of views when training generator
+    use_tri_plane: 1                    # Whether use tri plane representation
+    tet_res: 90                         # Resolution for teteahedron
+    latent_dim: 512                     # Dimention for latent code
+    geometry_type: conv3d               # The type of geometry generator
+    render_type: neural_render          # Type of renderer we used
+
+  ### Configs for training loss and discriminator#
+  loss_and_discriminator:
+    d_architecture: skip                # The architecture for discriminator
+    use_pl_length: 0                    # whether we apply path length regularization  # We didn't use path lenth regularzation to avoid nan error
+    gamma_mask: 0.0                     # R1 regularization weight for mask', metavar='FLOAT', type=click.FloatRange(min=0), default=0.0, required=False)
+    d_reg_interval: 16                  # The internal for R1 regularization', metavar='INT', type=click.IntRange(min=1), default=16)
+    add_camera_cond: 1                  # Whether we add camera as condition for discriminator', metavar='BOOL', type=bool, default=True, show_default=True)
+    lambda_flexicubes_surface_reg: 0.5  # Weights for flexicubes regularization L_dev', metavar='FLOAT', type=click.FloatRange(min=0), default=0.5, required=False)
+    lambda_flexicubes_weights_reg: 0.1  # Weights for flexicubes regularization on weights', metavar='FLOAT', type=click.FloatRange(min=0), default=0.1, required=False)
+
+  # Optional features.
+  features:
+    cond: 1                             # Train conditional model, type=bool
+    freezed: 0                          # Freeze first layers of D, (min=0)
+  hyperparameters:
+    batch-gpu: 4                        # Limit batch size per GPU, type=int(min=1)
+    cbase: 32768                        # Capacity multiplier, type=int(min=1)
+    cmax: 512                           # Max. feature maps, type=cint(min=1)
+    glr:                                # G learning rate  [default: varies], type=Float(min=0)
+    dlr: 0.002                          # D learning rate, type=Float(min=0)
+    map-depth: 5                        # Mapping network depth, type=int(min=1)
+    mbstd-group: 2                      # Minibatch std group size, type=IntRange(min=1)
+  settings:
+    desc: results                       # String to include in result dir name
+    metrics: [fid50k]                     # Quality metrics, type=parse_comma_separated_list, default='fid50k'
+    kimg: 20000                         # Total training duration, type=int(min=1)
+    tick: 1                             # How often to print progress, type=int(min=1)
+    snap: 10                            # How often to save snapshots, type=int(min=1)
+    seed: 0                             # Random seed, type=int(min=0)
+    fp32: 0                             # Disable mixed-precision, type=bool
+    nobench: 0                          # Disable cuDNN benchmarking, type=bool
+    workers: 3                          #DataLoader worker processes, type=int(min=0)
+    dry_run: 0                    
+

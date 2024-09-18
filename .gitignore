@@ -166,3 +166,5 @@ tests/*
 artifacts/*
 .venv*
 models/*
+training_logs/*
+training_results/*

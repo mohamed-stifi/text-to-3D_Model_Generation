@@ -29,8 +29,13 @@ data_split:
   val_ratio: 0.15 
 
 
-training_model:
-  # Required from StyleGAN2.
-  outdir: "results/"  # Where to save the results
-  cfg: 'stylegan2'
-  gpus: 
+training_prams:
+  data: ./artifacts/dataset                     # Path to the Training data Images
+  outdir: "training_logs/"                      # Where to save the results
+  data_split_file: ./artifacts/data_split/train.txt   # Path to the Training split text file
+  gpus: 2
+  batch: 16
+  gamma: 1000
+  one_3d_generator: 0
+  dmtet_scale: 1.0 
+  desc: training_results/
