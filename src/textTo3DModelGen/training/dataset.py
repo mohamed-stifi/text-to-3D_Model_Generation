@@ -53,6 +53,9 @@ class Dataset(torch.utils.data.Dataset):
                 self._raw_labels = np.zeros([self._raw_shape[0], 0], dtype=np.float32)
             assert isinstance(self._raw_labels, np.ndarray)
             assert self._raw_labels.shape[0] == self._raw_shape[0]
+            if self._raw_labels.dtype in [np.float64]:
+                self._raw_labels = self._raw_labels.astype(np.float32)
+
             assert self._raw_labels.dtype in [np.float32, np.int64]
             if self._raw_labels.dtype == np.int64:
                 assert self._raw_labels.ndim == 1
