@@ -2,7 +2,7 @@
 # Text to 3D Model Generation
 
 This repository provides an implementation for GET3D with textual conditionning for converting text input into 3D models. 
-This project is divided project package in src `textTo3DGen` and multiple pipelines, each pipline stage is designed to handle a specific part of the process, from data ingestion to model training. Additionally, each stage includes a Jupyter notebook in the `research` folder that explains how thius pipeline works in detail.
+This project is divided project package in src `textTo3DModelGen` and multiple pipelines, each pipline stage is designed to handle a specific part of the process, from data ingestion to model training. Additionally, each stage includes a Jupyter notebook in the `research` folder that explains how thius pipeline works in detail.
 
 ## Table of Contents
 
@@ -15,17 +15,20 @@ This project is divided project package in src `textTo3DGen` and multiple pipeli
   - [Data Split](#data-split)
   - [Training Model](#training-model)
 - [Research Notebooks](#research-notebooks)
-- [Logging](#logging)
+- [Project Package `textTo3DModelGen`](#project-package-textto3dmodelgen)
+
 
 ## Installation
 
 To use this repository, clone it and install the required dependencies. Make sure you have Python installed, then run:
 
 ```bash
-git clone https://github.com/yourusername/textTo3DModelGen.git
-cd textTo3DModelGen
+git clone https://github.com/mohamed-stifi/text-to-3D_Model_Generation.git
+cd text-to-3D_Model_Generation
 pip install -r requirements.txt
 ```
+
+- Download Blender 
 
 ## Usage
 
@@ -55,7 +58,7 @@ The Data Ingestion stage collects and prepares raw data for further processing.
 
 ### Data Rendering
 
-The Data Rendering stage generates visual representations of the data.
+The Data Rendering stage generates multi-view images of the 3D model.
 
 - **Usage**: `python main.py --stage 2`
 - **Notebook**: `research/02_data_rendering.ipynb`
@@ -83,14 +86,16 @@ The Training Model stage trains the model using the prepared data.
 
 ## Research Notebooks
 
-Each stage has a corresponding Jupyter notebook located in the `research` directory. These notebooks provide detailed explanations of the methodology, algorithms used, and implementation details.
+Each stage has a corresponding Jupyter notebook located in the research directory. These notebooks provide detailed explanations of the methodology, algorithms used, and implementation details for each stage.
 
-## Logging
+01_data_ingestion.ipynb: Explains the data ingestion process.
+02_data_rendering.ipynb: Details the data rendering step.
+03_text_embedding.ipynb: Provides an overview of the text embedding technique.
+04_data_split.ipynb: Describes how the dataset is split for training and testing.
+05_training_model.ipynb: Walks through the model training process.
 
-This repository uses a logging system to track the progress of each stage. Log messages are written to the console, providing feedback on the execution of each pipeline stage. Any errors encountered will also be logged for debugging purposes.
+## Project Package `textTo3DModelGen`
+The core of the project is the textTo3DModelGen package. This contains the implementation of the different stages of the pipeline. and divided to multiple modules and sub-packages.
 
-```python
-from textTo3DModelGen import logger
-```
+The entry point for running these pipelines is the main.py script, where you specify the stage to execute through the command-line arguments.
 
-To see the logs, ensure that your logging configuration is set up correctly.
